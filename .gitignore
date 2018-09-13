@@ -1,1 +1,4 @@
+node_modules
 *.txt
+yarn-error.log
+.env
