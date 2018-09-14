@@ -6,6 +6,7 @@ const logger = require('morgan');
 const cors = require('cors')
 
 const indexRouter = require('./api/index');
+const ticketsRouter = require('./api/ticket')
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cookieParser());
 app.use(cors())
 
 app.use('/', indexRouter);
+app.use('/tickets',ticketsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
