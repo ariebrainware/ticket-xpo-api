@@ -51,7 +51,7 @@ const controller = {
             derivation,
             destination,
             log,
-            status,
+            status:'open',
             createdAt : new Date(),
             updatedAt : new Date()
           })
