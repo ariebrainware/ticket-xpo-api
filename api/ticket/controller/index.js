@@ -37,8 +37,9 @@ const controller = {
       derivation,
       destination,
       log,
+      status,
     } = req.body;
-    if (name && derivation && destination && log) {
+    if (name && derivation && destination && log && status) {
       Ticket.findOne({ name }).then(ticket => {
         if (ticket) {
           res.status(406).send({
@@ -50,6 +51,7 @@ const controller = {
             derivation,
             destination,
             log,
+            status,
             createdAt : new Date(),
             updatedAt : new Date()
           })
