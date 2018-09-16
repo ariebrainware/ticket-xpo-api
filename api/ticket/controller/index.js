@@ -76,7 +76,7 @@ const controller = {
   },
 
   delete: (req, res) => {
-    const id = req.body._id
+    const {id} = req.params
     if(id){
       Ticket.findById(id)
       .then(ticket =>{

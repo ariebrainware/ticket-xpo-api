@@ -8,7 +8,7 @@ router.post("/", controller.add);
 // router.post("/seed", controller.seedData);
 router.post("/add",controller.add)
 router.put("/update",controller.update)
-router.delete("/delete",controller.delete)
+router.delete("/delete/:id",controller.delete)
 router.get("/filter",controller.filterByStatus)
 
 module.exports = router;
