@@ -76,13 +76,21 @@ const controller = {
   },
 
   delete: (req, res) => {
-    const { name } = req.body;
-    if (name) {
-      Ticket.findOneAndRemove(name)
-        .then(() => res.status(200).send({ message: "Ticket deleted!" }))
-        .catch(err => res.status(500).send(err));
-    } else res.status(404).send({ message: "Please specify the Ticket name" });
+    const id = req.body._id
+    if(id){
+      Ticket.findById(id)
+      .then(ticket =>{
+        if(ticket){
+          ticket.remove(err =>{
+            if(err) res.status(500).send(err)
+            res.status(200).send({message: "Ticket deleted!"}) 
+          })
+        }else res.status(404).send({message:"Ticket doesn's exist, maybe your input ticket number is wrong"})
+      })
+    }else res.status(400).send({message:"Please specify the ticket number"})
+      
   },
+
 
   filterByStatus: (req, res) => {
     const { status } = req.query;
