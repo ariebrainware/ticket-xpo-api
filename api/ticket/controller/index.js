@@ -51,9 +51,9 @@ const controller = {
             derivation,
             destination,
             log,
-            status:'open',
-            createdAt : new Date(),
-            updatedAt : new Date()
+            status: 'open',
+            createdAt: new Date(),
+            updatedAt: new Date()
           })
             .then(result => res.status(201).send(result))
             .catch(err => res.status(500).send(err));
@@ -67,30 +67,38 @@ const controller = {
   },
 
   update: (req, res) => {
-    const { name, status } = req.body;
-    if (name) {
-      Ticket.findOneAndUpdate(name, { status })
-        .then(() => res.status(200).send({ message: "Ticket status updated!" }))
-        .catch(err => res.status(500).send(err));
-    } else res.status(404).send({ message: "Please specify the Ticket name" });
+    const { id } = req.params
+    const { status, log } = req.body;
+    if (id) {
+      Ticket.findById(id)
+        .then(ticket => {
+          if (ticket) {
+            ticket.update({
+              status, log, updatedAt:new Date()
+            })
+              .then(() => {
+                res.status(200).send({ message: "Ticket updated!" })
+              })
+              .catch(err => res.status(500).send(err))
+          } else res.status(404).send({ message: "Ticket doesn's exist, maybe your input ticket number is wrong" })
+        })
+    } else res.status(400).send({ message: "Please specify the ticket number" })
   },
 
   delete: (req, res) => {
-    const {id} = req.params
-    if(id){
+    const { id } = req.params
+    if (id) {
       Ticket.findById(id)
-      .then(ticket =>{
-        if(ticket){
-          ticket.remove(err =>{
-            if(err) res.status(500).send(err)
-            res.status(200).send({message: "Ticket deleted!"}) 
-          })
-        }else res.status(404).send({message:"Ticket doesn's exist, maybe your input ticket number is wrong"})
-      })
-    }else res.status(400).send({message:"Please specify the ticket number"})
-      
+        .then(ticket => {
+          if (ticket) {
+            ticket.remove(err => {
+              if (err) res.status(500).send(err)
+              res.status(200).send({ message: "Ticket deleted!" })
+            })
+          } else res.status(404).send({ message: "Ticket doesn's exist, maybe your input ticket number is wrong" })
+        })
+    } else res.status(400).send({ message: "Please specify the ticket number" })
   },
-
 
   filterByStatus: (req, res) => {
     const { status } = req.query;
