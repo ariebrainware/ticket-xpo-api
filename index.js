@@ -17,7 +17,7 @@ require('dotenv-extended').load({
  */
 
 var app = require('./app');
-var debug = require('debug')('vouch-test-api:server');
+var debug = require('debug')('ticket-xpo-api:server');
 var http = require('http');
 
 /**
