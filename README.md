@@ -1,11 +1,11 @@
-# Vouch Developer Test
+# Ticket Xpo API
 
 ![Version 1.0.0](https://img.shields.io/badge/version-1.0.0-yellowgreen.svg)
 ![Content-API](https://img.shields.io/badge/content-API-green.svg)
 ![Section-Backend](https://img.shields.io/badge/section-backend-lightgrey.svg)
 
-Vouch Developer Test: Backend section from Ticket Xpo
-Using [MongoDB](https://mongodb.com) ODM with [mongoosejs](https://mongoosejs.com)
+Ticket xpo("Expo") is a simple management ferry ticket with CRUD functionallity,
+using [MongoDB](https://mongodb.com) ODM with [mongoosejs](https://mongoosejs.com)
 
 ## API Endpoint
 
