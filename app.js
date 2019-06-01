@@ -19,7 +19,7 @@ app.use(cors())
 
 app.use('/', messageRouter)
 app.use('/xpo/v1', indexRouter)
-app.use('/tickets',ticketsRouter)
+app.use('/xpo/v1/tickets',ticketsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
