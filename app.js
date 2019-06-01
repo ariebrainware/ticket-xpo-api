@@ -5,18 +5,20 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors')
 
-const indexRouter = require('./api/index');
+const messageRouter = require('./api/message')
+const indexRouter = require('./api/index')
 const ticketsRouter = require('./api/ticket')
 
-const app = express();
+const app = express()
 
-app.use(logger('dev'));
-app.use(express.json());
+app.use(logger('dev'))
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser())
 app.use(cors())
 
-app.use('/', indexRouter);
+app.use('/', messageRouter)
+app.use('/xpo/v1', indexRouter)
 app.use('/tickets',ticketsRouter)
 
 // catch 404 and forward to error handler
